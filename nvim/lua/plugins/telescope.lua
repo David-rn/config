@@ -1,4 +1,5 @@
-return { -- Fuzzy Finder (files, lsp, etc)
+return {
+  { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
     dependencies = {
@@ -100,4 +101,13 @@ return { -- Fuzzy Finder (files, lsp, etc)
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
     end,
-  }
+  },
+  {
+    'nvim-telescope/telescope-file-browser.nvim',
+    dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
+    config = function()
+      require('telescope').load_extension 'file_browser'
+      vim.keymap.set('n', '<space>b', ':Telescope file_browser<CR>')
+    end,
+  },
+}
