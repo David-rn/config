@@ -17,12 +17,17 @@ vim.o.relativenumber = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.o.scrolloff = 25
 
+vim.opt.clipboard = 'unnamedplus'
+
 -- Configure how new splits should be opened
 vim.o.splitright = true
 vim.o.splitbelow = true
 
+-- Insert a virtual line at column X
+-- vim.opt.colorcolumn = '100,120'
+
 -- Default theme
-vim.cmd.colorscheme 'catppuccin-mocha'
+vim.cmd.colorscheme 'tokyonight'
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
@@ -38,9 +43,9 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function()
-    vim.hl.on_yank()
-  end,
+	desc = 'Highlight when yanking (copying) text',
+	group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+	callback = function()
+		vim.hl.on_yank()
+	end,
 })
