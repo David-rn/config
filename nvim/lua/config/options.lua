@@ -24,7 +24,7 @@ vim.o.splitright = true
 vim.o.splitbelow = true
 
 -- Insert a virtual line at column X
--- vim.opt.colorcolumn = '100,120'
+vim.opt.colorcolumn = '100'
 
 -- Default theme
 vim.cmd.colorscheme 'tokyonight'
@@ -41,6 +41,12 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+-- Move lines up/down
+vim.keymap.set('n', '<S-j>', ':m .+1<CR>', { desc = 'Move current line down' })
+vim.keymap.set('n', '<S-k>', ':m .-2<CR>', { desc = 'Move current line up' })
+vim.keymap.set('v', '<S-j>', ":m '>+1<CR>gv=gv", { desc = 'Move selected lines down' })
+vim.keymap.set('v', '<S-k>', ":m '<-2<CR>gv=gv", { desc = 'Move selected lines up' })
 
 vim.api.nvim_create_autocmd('TextYankPost', {
 	desc = 'Highlight when yanking (copying) text',
