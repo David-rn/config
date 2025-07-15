@@ -14,13 +14,13 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-
+# >>> FZF >>>
 source <(fzf --zsh)
+# <<< FZF <<<
 
 # >>> Oh My Posh >>>
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
@@ -47,3 +47,19 @@ alias ls="eza --color=always --long --git --icons=always --no-permissions"
 eval "$(zoxide init zsh)"
 alias cd="z"
 # <<< Zoxide <<<
+
+# >>> Yazi >>>
+export EDITOR="nvim"
+
+function y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  yazi "$@" --cwd-file="$tmp"
+  IFS= read -r -d '' cwd < "$tmp"
+  [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+  rm -f -- "$tmp"
+}
+# <<< Yazi <<<
+
+# >>> thefuck alias >>>
+eval $(thefuck --alias)
+# <<< thefuck alias <<<
