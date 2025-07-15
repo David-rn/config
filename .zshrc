@@ -38,3 +38,12 @@ setopt sharehistory
 setopt hist_save_no_dups
 setopt hist_ignore_dups
 # <<< ZSH History <<<
+
+# >>> Eza (better ls) >>>
+alias ls="eza --color=always --long --git --icons=always --no-permissions"
+# <<< Eza (better ls) <<<
+
+# >>> Zoxide >>>
+eval "$(zoxide init zsh)"
+alias cd="z"
+# <<< Zoxide <<<
